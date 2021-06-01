@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-food4kids-dev-171021-authRole",
+      "UnauthRoleArn": "arn:aws:iam::004720906935:role/amplify-food4kids-dev-171021-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::004720906935:role/amplify-food4kids-dev-171021-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-food4kids-dev-171021-deployment",
+      "UnauthRoleName": "amplify-food4kids-dev-171021-unauthRole",
+      "StackName": "amplify-food4kids-dev-171021",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:004720906935:stack/amplify-food4kids-dev-171021/2def7510-c159-11eb-baf6-02470806ce36",
+      "AmplifyAppId": "d3jt0zhhpet5pg"
+    }
+  }
+}

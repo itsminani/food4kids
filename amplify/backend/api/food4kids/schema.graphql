@@ -1,0 +1,31 @@
+type Bag @model {
+  id: ID!
+  bag_name: String!
+  halal: String
+  creator_name: String!
+  creation_date: AWSDate!
+  contents: [Content] @connection(keyName: "byBag", fields: ["id"])
+}
+
+type Content @model @key(name: "byBag", fields: ["bagID"]) {
+  id: ID!
+  title: String!
+  bagID: ID!
+  # blog: Blog @connection(fields: ["blogID"])
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+}
+
+type Foods @model @key(name: "byBag", fields: ["bagID"]) {
+  id: ID!
+  title: String!
+  bagID: ID!
+  # blog: Blog @connection(fields: ["blogID"])
+  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+}
+
+# type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+#   id: ID!
+#   postID: ID!
+#   post: Post @connection(fields: ["postID"])
+#   content: String!
+# }
