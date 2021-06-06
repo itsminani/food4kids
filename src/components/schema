@@ -1,0 +1,5 @@
+fdcId: String
+description: String       
+lowercaseDescription: String         
+foodCategory: String
+foodNutrients: AWSJSON

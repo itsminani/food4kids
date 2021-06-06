@@ -9,19 +9,21 @@ type Bag @model {
 
 type Content @model @key(name: "byBag", fields: ["bagID"]) {
   id: ID!
+  foodID: String
   title: String!
   bagID: ID!
   # blog: Blog @connection(fields: ["blogID"])
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  }
+
+type Foods @model{
+  id: ID!
+  fdcId: String
+  description: String
+  lowercaseDescription: String         
+  foodCategory: String
+  foodNutrients: AWSJSON
 }
 
-type Foods @model @key(name: "byBag", fields: ["bagID"]) {
-  id: ID!
-  title: String!
-  bagID: ID!
-  # blog: Blog @connection(fields: ["blogID"])
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
-}
 
 # type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
 #   id: ID!
