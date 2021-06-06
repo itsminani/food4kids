@@ -34,24 +34,34 @@
     >
       <q-list>
         <q-item-label header>Test 1</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="#">
+        <q-item clickable tag="a" to="/searchFood">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
+            <q-item-label>Home</q-item-label>
             <q-item-label caption>Test</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="#">
+        <q-item clickable tag="a" to="/listBags">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="folder" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Statistics</q-item-label>
+            <q-item-label caption>Stats for Bags</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item clickable to="/calendar">
+          <q-item-section avatar>
+            <q-icon name="book" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Calendar</q-item-label>
+            <q-item-label caption>Bags By date</q-item-label>
+          </q-item-section>
+        </q-item>
+          
       </q-list>
     </q-drawer>
     <q-drawer show-if-above v-model="rightDrawer" side="right" bordered>
@@ -60,7 +70,7 @@
     </q-drawer>
     <q-page-container>
       
-      <HelloWorld />
+      <mainLayout/>
       <div class="">
         <!-- <q-input class="print-hide" type="text" label="Mesage"></q-input> <br /> -->
       </div>
@@ -69,14 +79,14 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import mainLayout from "./components/mainLayout.vue";
 import drawerRight from "./components/drawerRight.vue";
 
 export default {
   name: "LayoutDefault",
 
   components: {
-    HelloWorld,
+    mainLayout,
     drawerRight,
   },
 
@@ -85,6 +95,11 @@ export default {
       leftDrawerOpen: false,
       rightDrawer: false,
     };
+  },
+  methods: {
+    redirect(){
+
+    }
   },
 };
 </script>

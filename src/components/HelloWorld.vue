@@ -3,7 +3,20 @@
     <!-- <img alt="Test" src="../assets/Test.jpg" /> -->
     <div class="cards q-mx-sm">
       <card />
-      {{listedFoods}}
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
+      <card />
     </div>
   </q-page>
 </template>
