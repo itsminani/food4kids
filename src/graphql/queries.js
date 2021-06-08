@@ -6,12 +6,11 @@ export const getBag = /* GraphQL */ `
     getBag(id: $id) {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -34,9 +33,7 @@ export const listBags = /* GraphQL */ `
       items {
         id
         bag_name
-        halal
-        creator_name
-        creation_date
+        speciality_diet
         contents {
           nextToken
         }
@@ -51,6 +48,7 @@ export const getContent = /* GraphQL */ `
   query GetContent($id: ID!) {
     getContent(id: $id) {
       id
+      foodID
       title
       bagID
       createdAt
@@ -67,6 +65,7 @@ export const listContents = /* GraphQL */ `
     listContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        foodID
         title
         bagID
         createdAt
@@ -76,9 +75,9 @@ export const listContents = /* GraphQL */ `
     }
   }
 `;
-export const getFoods = /* GraphQL */ `
-  query GetFoods($id: ID!) {
-    getFoods(id: $id) {
+export const getFood = /* GraphQL */ `
+  query GetFood($id: ID!) {
+    getFood(id: $id) {
       id
       fdcId
       description
@@ -90,13 +89,13 @@ export const getFoods = /* GraphQL */ `
     }
   }
 `;
-export const listFoodss = /* GraphQL */ `
-  query ListFoodss(
-    $filter: ModelFoodsFilterInput
+export const listFoods = /* GraphQL */ `
+  query ListFoods(
+    $filter: ModelFoodFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listFoodss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listFoods(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         fdcId
@@ -104,6 +103,35 @@ export const listFoodss = /* GraphQL */ `
         lowercaseDescription
         foodCategory
         foodNutrients
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getNutrient = /* GraphQL */ `
+  query GetNutrient($id: ID!) {
+    getNutrient(id: $id) {
+      id
+      tracked
+      nutrientName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listNutrients = /* GraphQL */ `
+  query ListNutrients(
+    $filter: ModelNutrientFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listNutrients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        tracked
+        nutrientName
         createdAt
         updatedAt
       }

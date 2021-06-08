@@ -5,6 +5,8 @@ import store from "./store";
 import "./quasar";
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
+import VueFormulate from '@braid/vue-formulate'
+import "@/styles/vueFormulate.css"
 import {
   applyPolyfills,
   defineCustomElements,
@@ -17,6 +19,7 @@ applyPolyfills().then(() => {
 
 Vue.config.productionTip = false;
 
+Vue.use(VueFormulate)
 new Vue({
   router,
   store,

@@ -43,6 +43,5 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   grid: 20px;
-  font-family: sans-serif;
 }
 </style>

@@ -9,12 +9,11 @@ export const createBag = /* GraphQL */ `
     createBag(input: $input, condition: $condition) {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -35,12 +34,11 @@ export const updateBag = /* GraphQL */ `
     updateBag(input: $input, condition: $condition) {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -61,12 +59,11 @@ export const deleteBag = /* GraphQL */ `
     deleteBag(input: $input, condition: $condition) {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -86,6 +83,7 @@ export const createContent = /* GraphQL */ `
   ) {
     createContent(input: $input, condition: $condition) {
       id
+      foodID
       title
       bagID
       createdAt
@@ -100,6 +98,7 @@ export const updateContent = /* GraphQL */ `
   ) {
     updateContent(input: $input, condition: $condition) {
       id
+      foodID
       title
       bagID
       createdAt
@@ -114,6 +113,7 @@ export const deleteContent = /* GraphQL */ `
   ) {
     deleteContent(input: $input, condition: $condition) {
       id
+      foodID
       title
       bagID
       createdAt
@@ -121,12 +121,12 @@ export const deleteContent = /* GraphQL */ `
     }
   }
 `;
-export const createFoods = /* GraphQL */ `
-  mutation CreateFoods(
-    $input: CreateFoodsInput!
-    $condition: ModelFoodsConditionInput
+export const createFood = /* GraphQL */ `
+  mutation CreateFood(
+    $input: CreateFoodInput!
+    $condition: ModelFoodConditionInput
   ) {
-    createFoods(input: $input, condition: $condition) {
+    createFood(input: $input, condition: $condition) {
       id
       fdcId
       description
@@ -138,12 +138,12 @@ export const createFoods = /* GraphQL */ `
     }
   }
 `;
-export const updateFoods = /* GraphQL */ `
-  mutation UpdateFoods(
-    $input: UpdateFoodsInput!
-    $condition: ModelFoodsConditionInput
+export const updateFood = /* GraphQL */ `
+  mutation UpdateFood(
+    $input: UpdateFoodInput!
+    $condition: ModelFoodConditionInput
   ) {
-    updateFoods(input: $input, condition: $condition) {
+    updateFood(input: $input, condition: $condition) {
       id
       fdcId
       description
@@ -155,18 +155,60 @@ export const updateFoods = /* GraphQL */ `
     }
   }
 `;
-export const deleteFoods = /* GraphQL */ `
-  mutation DeleteFoods(
-    $input: DeleteFoodsInput!
-    $condition: ModelFoodsConditionInput
+export const deleteFood = /* GraphQL */ `
+  mutation DeleteFood(
+    $input: DeleteFoodInput!
+    $condition: ModelFoodConditionInput
   ) {
-    deleteFoods(input: $input, condition: $condition) {
+    deleteFood(input: $input, condition: $condition) {
       id
       fdcId
       description
       lowercaseDescription
       foodCategory
       foodNutrients
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createNutrient = /* GraphQL */ `
+  mutation CreateNutrient(
+    $input: CreateNutrientInput!
+    $condition: ModelNutrientConditionInput
+  ) {
+    createNutrient(input: $input, condition: $condition) {
+      id
+      tracked
+      nutrientName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateNutrient = /* GraphQL */ `
+  mutation UpdateNutrient(
+    $input: UpdateNutrientInput!
+    $condition: ModelNutrientConditionInput
+  ) {
+    updateNutrient(input: $input, condition: $condition) {
+      id
+      tracked
+      nutrientName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteNutrient = /* GraphQL */ `
+  mutation DeleteNutrient(
+    $input: DeleteNutrientInput!
+    $condition: ModelNutrientConditionInput
+  ) {
+    deleteNutrient(input: $input, condition: $condition) {
+      id
+      tracked
+      nutrientName
       createdAt
       updatedAt
     }

@@ -6,12 +6,11 @@ export const onCreateBag = /* GraphQL */ `
     onCreateBag {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -29,12 +28,11 @@ export const onUpdateBag = /* GraphQL */ `
     onUpdateBag {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -52,12 +50,11 @@ export const onDeleteBag = /* GraphQL */ `
     onDeleteBag {
       id
       bag_name
-      halal
-      creator_name
-      creation_date
+      speciality_diet
       contents {
         items {
           id
+          foodID
           title
           bagID
           createdAt
@@ -74,6 +71,7 @@ export const onCreateContent = /* GraphQL */ `
   subscription OnCreateContent {
     onCreateContent {
       id
+      foodID
       title
       bagID
       createdAt
@@ -85,6 +83,7 @@ export const onUpdateContent = /* GraphQL */ `
   subscription OnUpdateContent {
     onUpdateContent {
       id
+      foodID
       title
       bagID
       createdAt
@@ -96,6 +95,7 @@ export const onDeleteContent = /* GraphQL */ `
   subscription OnDeleteContent {
     onDeleteContent {
       id
+      foodID
       title
       bagID
       createdAt
@@ -103,9 +103,9 @@ export const onDeleteContent = /* GraphQL */ `
     }
   }
 `;
-export const onCreateFoods = /* GraphQL */ `
-  subscription OnCreateFoods {
-    onCreateFoods {
+export const onCreateFood = /* GraphQL */ `
+  subscription OnCreateFood {
+    onCreateFood {
       id
       fdcId
       description
@@ -117,9 +117,9 @@ export const onCreateFoods = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateFoods = /* GraphQL */ `
-  subscription OnUpdateFoods {
-    onUpdateFoods {
+export const onUpdateFood = /* GraphQL */ `
+  subscription OnUpdateFood {
+    onUpdateFood {
       id
       fdcId
       description
@@ -131,15 +131,48 @@ export const onUpdateFoods = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteFoods = /* GraphQL */ `
-  subscription OnDeleteFoods {
-    onDeleteFoods {
+export const onDeleteFood = /* GraphQL */ `
+  subscription OnDeleteFood {
+    onDeleteFood {
       id
       fdcId
       description
       lowercaseDescription
       foodCategory
       foodNutrients
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateNutrient = /* GraphQL */ `
+  subscription OnCreateNutrient {
+    onCreateNutrient {
+      id
+      tracked
+      nutrientName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateNutrient = /* GraphQL */ `
+  subscription OnUpdateNutrient {
+    onUpdateNutrient {
+      id
+      tracked
+      nutrientName
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteNutrient = /* GraphQL */ `
+  subscription OnDeleteNutrient {
+    onDeleteNutrient {
+      id
+      tracked
+      nutrientName
       createdAt
       updatedAt
     }
