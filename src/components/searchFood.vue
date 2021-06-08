@@ -8,10 +8,11 @@
         hide-selected
         fill-input
         input-debounce="0"
+        placeholder="Search Food"
         :options="options"
         @filter="filterFn"
         @input-value="setModel"
-        hint="Text autocomplete"
+        hint="Search food"
         style="min-width: 400px; padding-bottom: 32px"
       >
         <template v-slot:no-option>
@@ -50,6 +51,8 @@
 
 <style></style>
 <script>
+import { API } from "aws-amplify";
+import { createFood } from "@/graphql/mutations";
 export default {
   name: "HelloWorld",
   components: {},
@@ -64,7 +67,20 @@ export default {
     options: [],
   }),
   methods: {
-    async save() {},
+    async save() {
+      try {
+        const foodResponse = await API.graphql({
+          query: createFood,
+          variables: { input: this.searchValue },
+        });
+        console.log(foodResponse);
+        this.$q.notify("Food Added Successfully");
+      } catch (error) {
+        console.log(error);
+        this.$q.notify("Failed Adding Food to database");
+      }
+    },
+
     removeCard() {
       this.searchValue = null;
     },
