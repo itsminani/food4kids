@@ -1,9 +1,9 @@
 type Bag @model {
   id: ID!
   bag_name: String!
-  halal: String
-  creator_name: String!
-  creation_date: AWSDate!
+  speciality_diet: String
+  # creator_name: String!
+  # creation_date: AWSDate!
   contents: [Content] @connection(keyName: "byBag", fields: ["id"])
 }
 
@@ -15,13 +15,19 @@ type Content @model @key(name: "byBag", fields: ["bagID"]) {
   # blog: Blog @connection(fields: ["blogID"])
   }
 
-type Foods @model{
+type Food @model{
   id: ID!
   fdcId: String
   description: String
   lowercaseDescription: String         
   foodCategory: String
   foodNutrients: AWSJSON
+}
+
+type Nutrient @model {
+  id: ID!
+  tracked: Boolean
+  nutrientName: String
 }
 
 

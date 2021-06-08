@@ -1,33 +1,58 @@
 <template>
-  <q-page class="flex flex-center">
-    <q-select
-      filled
-      v-model="searchValue"
-      use-input
-      hide-selected
-      fill-input
-      input-debounce="0"
-      :options="options"
-      @filter="filterFn"
-      @input-value="setModel"
-      hint="Text autocomplete"
-      style="width: 250px; padding-bottom: 32px"
-    >
-      <template v-slot:no-option>
-        <q-item>
-          <q-item-section class="text-grey"> No results </q-item-section>
-        </q-item>
-      </template>
-    </q-select>
-    <p>{{ searchValue }}</p>
-  </q-page>
+  <div>
+    <q-page class="">
+      <q-select
+        filled
+        v-model="searchValue"
+        use-input
+        hide-selected
+        fill-input
+        input-debounce="0"
+        :options="options"
+        @filter="filterFn"
+        @input-value="setModel"
+        hint="Text autocomplete"
+        style="min-width: 400px; padding-bottom: 32px"
+      >
+        <template v-slot:no-option>
+          <q-item>
+            <q-item-section class="text-grey"> No results </q-item-section>
+          </q-item>
+        </template>
+      </q-select>
+      <q-card v-if="!!searchValue" class="my-card">
+        <q-card-section>
+          <div class="text-h6">
+            {{ searchValue.description }}
+          </div>
+          <div class="text-subtitle2">
+            Food Category: <b>{{ searchValue.foodCategory }}</b>
+          </div>
+        </q-card-section>
+
+        <q-separator />
+        <q-card-section>
+          fcdId: {{ searchValue.fdcId }} <br />
+          description: {{ searchValue.description }} <br />
+          Category: {{ searchValue.foodCategory }} <br />
+        </q-card-section>
+
+        <q-separator />
+
+        <q-card-actions>
+          <q-btn @click="save()" color="primary">Add To Database</q-btn>
+          <q-btn @click="removeCard()" color="red">Cancel</q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-page>
+  </div>
 </template>
 
 <style></style>
-
 <script>
 export default {
   name: "HelloWorld",
+  components: {},
   data: () => ({
     api_url: "",
     searchValue: null,
@@ -39,6 +64,10 @@ export default {
     options: [],
   }),
   methods: {
+    async save() {},
+    removeCard() {
+      this.searchValue = null;
+    },
     async filterFn(val, update, abort) {
       this.api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(
         this.params.apiKey
@@ -63,8 +92,8 @@ export default {
         //   (v) => v.toLocaleLowerCase().indexOf(needle) > -1
         // );
       });
+      console.log(this.searchValue);
     },
-
     setModel(val) {
       this.model = val;
     },

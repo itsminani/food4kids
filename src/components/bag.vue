@@ -4,7 +4,7 @@
       <q-card-section>
         <div class="row items-center no-wrap">
           <div class="col">
-            <div class="text-h6" style="padding: 0px">{{ foodBag.title }}</div>
+            <div class="text-h6" style="padding: 0px">{{ bag.bag_name }}</div>
             <!-- <div class="text-subtitle2">{{foodBag.foodContents}}</div> -->
           </div>
 
@@ -13,13 +13,13 @@
               <q-menu cover auto-close>
                 <q-list>
                   <q-item clickable>
-                    <q-item-section>Remove Card</q-item-section>
-                  </q-item>
-                  <q-item clickable>
-                    <q-item-section>Send Feedback</q-item-section>
+                    <q-item-section>Add Foods</q-item-section>
                   </q-item>
                   <q-item clickable>
                     <q-item-section>Share</q-item-section>
+                  </q-item>
+                  <q-item clickable>
+                    <q-item-section>Remove Card</q-item-section>
                   </q-item>
                 </q-list>
               </q-menu>
@@ -34,7 +34,7 @@
         <q-list dense bordered separator>
           <div v-for="item in foodBag.foodContents" :key="item">
             <q-item clickable v-ripple>
-              <q-item-section>{{item}}</q-item-section>
+              <q-item-section>{{ item }}</q-item-section>
             </q-item>
             <q-separator></q-separator>
           </div>
@@ -54,6 +54,7 @@ export default {
       },
     };
   },
+  props: ["bag"],
 };
 </script>
 
