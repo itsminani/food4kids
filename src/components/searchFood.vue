@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-page class="">
+      <createBag/>
       <q-select
         filled
         v-model="searchValue"
@@ -21,6 +22,7 @@
           </q-item>
         </template>
       </q-select>
+      
       <q-card v-if="!!searchValue" class="my-card">
         <q-card-section>
           <div class="text-h6">
@@ -51,11 +53,15 @@
 
 <style></style>
 <script>
+import createBag from "./createBag.vue"
 import { API } from "aws-amplify";
 import { createFood } from "@/graphql/mutations";
+import { listFoods } from "@/graphql/queries";
 export default {
   name: "HelloWorld",
-  components: {},
+  components: {
+    createBag
+  },
   data: () => ({
     api_url: "",
     searchValue: null,
@@ -68,16 +74,43 @@ export default {
   }),
   methods: {
     async save() {
+      // Check if the food already exists in the database
       try {
-        const foodResponse = await API.graphql({
-          query: createFood,
-          variables: { input: this.searchValue },
+        const filter = {
+          fdcId: {
+            eq: this.searchValue.fdcId,
+          },
+        };
+        const checkFoodResponse = await API.graphql({
+          query: listFoods,
+          variables: { filter: filter },
         });
-        console.log(foodResponse);
-        this.$q.notify("Food Added Successfully");
+        if (checkFoodResponse.data.listFoods.items[0]) {
+          this.$q.notify("Food already exist in the database");
+        } else {
+          // Do your thing
+          const foodToSend = {};
+          foodToSend.fdcId = this.searchValue.fdcId;
+          foodToSend.description = this.searchValue.description;
+          foodToSend.lowercaseDescription =
+            this.searchValue.lowercaseDescription;
+          foodToSend.foodCategory = this.searchValue.foodCategory;
+          foodToSend.foodNutrients = JSON.stringify(this.searchValue.foodNutrients)
+          console.log(foodToSend.foodNutrients)
+          try {
+            const foodResponse = await API.graphql({
+              query: createFood,
+              variables: { input: foodToSend },
+            });
+            console.log(foodResponse);
+            this.$q.notify("Food Added Successfully");
+          } catch (error) {
+            console.log(error);
+            this.$q.notify("Failed Adding Food to database");
+          }
+        }
       } catch (error) {
         console.log(error);
-        this.$q.notify("Failed Adding Food to database");
       }
     },
 

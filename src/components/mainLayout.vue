@@ -10,6 +10,9 @@
 export default {
   components: {
   },
+  created() {
+    this.$store.dispatch("foods/listFoodsAction")
+  },
   data() {
     return {};
   },

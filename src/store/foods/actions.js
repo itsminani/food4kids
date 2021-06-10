@@ -1,6 +1,22 @@
-// import { API } from "aws-amplify";
-// import { createLog } from "@/graphql/mutations.js";
+import { API } from "aws-amplify";
+import { listFoods } from "@/graphql/queries.js";
 
+export const listFoodsAction = async ({ commit }) => {
+    try {
+        const foodsResponse = await API.graphql({
+            query: listFoods,
+        });
+        const foods = foodsResponse.data.listFoods.items;
+        console.log(foods);
+        foods.forEach((food) => {
+            food.foodNutrients = JSON.parse(food.foodNutrients);
+            food.foodNutrients = food.foodNutrients.slice(0, 10);
+        });
+    commit("SET_LISTED_FOODS", foods)
+    } catch (error) {
+        console.log(error);
+    }
+}
 // export const createLogAction = async ({ commit, dispatch }, log) => {
 //   try {
 //     console.log(log);

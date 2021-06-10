@@ -3,7 +3,7 @@ type Bag @model {
   bag_name: String!
   speciality_diet: String
   # creator_name: String!
-  # creation_date: AWSDate!
+  # creation_date: String!
   contents: [Content] @connection(keyName: "byBag", fields: ["id"])
 }
 
@@ -14,7 +14,7 @@ type Content @model @key(name: "byBag", fields: ["bagID"]) {
   bagID: ID!
   # blog: Blog @connection(fields: ["blogID"])
   }
-
+  
 type Food @model{
   id: ID!
   fdcId: String

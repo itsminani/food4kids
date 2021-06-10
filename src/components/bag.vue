@@ -9,21 +9,44 @@
           </div>
 
           <div class="col-auto">
-            <q-btn color="grey-7" round flat icon="more_vert">
-              <q-menu cover auto-close>
-                <q-list>
-                  <q-item clickable>
-                    <q-item-section>Add Foods</q-item-section>
-                  </q-item>
-                  <q-item clickable>
-                    <q-item-section>Share</q-item-section>
-                  </q-item>
-                  <q-item clickable>
-                    <q-item-section>Remove Card</q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
+            <q-fab
+              v-model="fab2"
+              label="Actions"
+              external-label
+              vertical-actions-align="left"
+              color="purple"
+              icon="keyboard_arrow_down"
+              direction="left"
+              
+            >
+              <q-fab-action
+                external-label
+                color="primary"
+                @click="showAddFood=true"
+                icon="mail"
+              />
+              <q-fab-action
+                external-label
+                color="secondary"
+                @click="onClick()"
+                icon="alarm"
+              />
+              <q-fab-action
+                external-label
+                color="orange"
+                @click="onClick()"
+                icon="airplay"
+              />
+              <q-fab-action
+                external-label
+                color="accent"
+                @click="onClick()"
+                icon="room"
+              />
+            </q-fab>
+            <q-dialog v-model="showAddFood">
+            <addFood/>
+            </q-dialog>
           </div>
         </div>
       </q-card-section>
@@ -45,16 +68,32 @@
 </template>
 
 <script>
+import addFood from "./addFood.vue";
 export default {
   data() {
     return {
+      showAddFood: false,
+      fab2:false,
       foodBag: {
         title: "Halal",
         foodContents: ["Banana", "Rice", "Chocolate", "Porridge"],
       },
     };
   },
+  watch: {
+    showAddFood: function () {
+      console.log(this.showAddFood);
+    },
+  },
+  components: {
+    addFood,
+  },
   props: ["bag"],
+  methods: {
+    onClick(){
+      console.log("Ok Boi")
+    }
+  },
 };
 </script>
 
