@@ -1,5 +1,6 @@
-export default function() {
+export default function () {
   return {
-    foods: []
+    foods: [],
+    bags: [],
   };
 }

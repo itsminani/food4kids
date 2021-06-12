@@ -7,17 +7,7 @@ export const onCreateBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      contents
       createdAt
       updatedAt
     }
@@ -29,17 +19,7 @@ export const onUpdateBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      contents
       createdAt
       updatedAt
     }
@@ -51,53 +31,7 @@ export const onDeleteBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateContent = /* GraphQL */ `
-  subscription OnCreateContent {
-    onCreateContent {
-      id
-      foodID
-      title
-      bagID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateContent = /* GraphQL */ `
-  subscription OnUpdateContent {
-    onUpdateContent {
-      id
-      foodID
-      title
-      bagID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteContent = /* GraphQL */ `
-  subscription OnDeleteContent {
-    onDeleteContent {
-      id
-      foodID
-      title
-      bagID
+      contents
       createdAt
       updatedAt
     }

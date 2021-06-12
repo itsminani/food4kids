@@ -10,17 +10,7 @@ export const createBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      contents
       createdAt
       updatedAt
     }
@@ -35,17 +25,7 @@ export const updateBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      contents
       createdAt
       updatedAt
     }
@@ -60,62 +40,7 @@ export const deleteBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createContent = /* GraphQL */ `
-  mutation CreateContent(
-    $input: CreateContentInput!
-    $condition: ModelContentConditionInput
-  ) {
-    createContent(input: $input, condition: $condition) {
-      id
-      foodID
-      title
-      bagID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateContent = /* GraphQL */ `
-  mutation UpdateContent(
-    $input: UpdateContentInput!
-    $condition: ModelContentConditionInput
-  ) {
-    updateContent(input: $input, condition: $condition) {
-      id
-      foodID
-      title
-      bagID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteContent = /* GraphQL */ `
-  mutation DeleteContent(
-    $input: DeleteContentInput!
-    $condition: ModelContentConditionInput
-  ) {
-    deleteContent(input: $input, condition: $condition) {
-      id
-      foodID
-      title
-      bagID
+      contents
       createdAt
       updatedAt
     }

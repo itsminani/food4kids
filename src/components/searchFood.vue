@@ -1,7 +1,6 @@
 <template>
   <div>
-    <q-page class="">
-      <createBag/>
+    <q-page>
       <q-select
         filled
         v-model="searchValue"
@@ -9,6 +8,7 @@
         hide-selected
         fill-input
         input-debounce="0"
+        class="q-py-sm"
         placeholder="Search Food"
         :options="options"
         @filter="filterFn"
@@ -53,14 +53,12 @@
 
 <style></style>
 <script>
-import createBag from "./createBag.vue"
 import { API } from "aws-amplify";
 import { createFood } from "@/graphql/mutations";
 import { listFoods } from "@/graphql/queries";
 export default {
   name: "HelloWorld",
   components: {
-    createBag
   },
   data: () => ({
     api_url: "",

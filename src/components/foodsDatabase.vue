@@ -27,7 +27,7 @@
       row-key="id"
       :filter="filter"
       class="my-sticky-header-table q-my-md"
-      title="Treats"
+      title="Foods"
       flat
       bordered
     >
@@ -46,7 +46,7 @@
       </template>
     </q-table>
 
-    <q-table v-if="foods" title="Treats" :data="foods" :columns="columns" row-key="fdcId">
+    <q-table v-if="foods" title="Foods" :data="foods" :columns="columns" row-key="fdcId">
       <template v-slot:header="props">
         <q-tr :props="props">
           <q-th auto-width />

@@ -4,17 +4,9 @@ type Bag @model {
   speciality_diet: String
   # creator_name: String!
   # creation_date: String!
-  contents: [Content] @connection(keyName: "byBag", fields: ["id"])
+  contents: AWSJSON
 }
 
-type Content @model @key(name: "byBag", fields: ["bagID"]) {
-  id: ID!
-  foodID: String
-  title: String!
-  bagID: ID!
-  # blog: Blog @connection(fields: ["blogID"])
-  }
-  
 type Food @model{
   id: ID!
   fdcId: String

@@ -1,5 +1,6 @@
 import { API } from "aws-amplify";
 import { listFoods } from "@/graphql/queries.js";
+import { listBags } from "@/graphql/queries.js";
 
 export const listFoodsAction = async ({ commit }) => {
     try {
@@ -13,6 +14,18 @@ export const listFoodsAction = async ({ commit }) => {
             food.foodNutrients = food.foodNutrients.slice(0, 10);
         });
     commit("SET_LISTED_FOODS", foods)
+    } catch (error) {
+        console.log(error);
+    }
+}
+export const listBagsAction = async ({ commit }) => {
+    try {
+        const bagsResponse = await API.graphql({
+            query: listBags,
+        });
+        const bags = bagsResponse.data.listBags.items;
+        console.log(bags);
+    commit("SET_LISTED_BAGS", bags)
     } catch (error) {
         console.log(error);
     }

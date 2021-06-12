@@ -7,17 +7,7 @@ export const getBag = /* GraphQL */ `
       id
       bag_name
       speciality_diet
-      contents {
-        items {
-          id
-          foodID
-          title
-          bagID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
+      contents
       createdAt
       updatedAt
     }
@@ -34,40 +24,7 @@ export const listBags = /* GraphQL */ `
         id
         bag_name
         speciality_diet
-        contents {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getContent = /* GraphQL */ `
-  query GetContent($id: ID!) {
-    getContent(id: $id) {
-      id
-      foodID
-      title
-      bagID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listContents = /* GraphQL */ `
-  query ListContents(
-    $filter: ModelContentFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listContents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        foodID
-        title
-        bagID
+        contents
         createdAt
         updatedAt
       }

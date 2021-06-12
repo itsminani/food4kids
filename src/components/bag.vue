@@ -5,47 +5,35 @@
         <div class="row items-center no-wrap">
           <div class="col">
             <div class="text-h6" style="padding: 0px">{{ bag.bag_name }}</div>
-            <!-- <div class="text-subtitle2">{{foodBag.foodContents}}</div> -->
+            <div class="text-subtitle2">{{ date }}</div>
           </div>
 
           <div class="col-auto">
             <q-fab
               v-model="fab2"
-              label="Actions"
+              padding="5px"
               external-label
+              label="Actions"
               vertical-actions-align="left"
-              color="purple"
+              color="green-5"
               icon="keyboard_arrow_down"
               direction="left"
-              
             >
               <q-fab-action
                 external-label
                 color="primary"
-                @click="showAddFood=true"
-                icon="mail"
+                @click="showAddFood = true"
+                icon="add"
               />
               <q-fab-action
                 external-label
-                color="secondary"
+                color="red"
                 @click="onClick()"
-                icon="alarm"
-              />
-              <q-fab-action
-                external-label
-                color="orange"
-                @click="onClick()"
-                icon="airplay"
-              />
-              <q-fab-action
-                external-label
-                color="accent"
-                @click="onClick()"
-                icon="room"
+                icon="delete"
               />
             </q-fab>
-            <q-dialog v-model="showAddFood">
-            <addFood/>
+            <q-dialog persistent style="width: 600px" v-model="showAddFood">
+              <addFood :bagId="bag.id"/>
             </q-dialog>
           </div>
         </div>
@@ -55,9 +43,9 @@
 
       <q-card-actions vertical>
         <q-list dense bordered separator>
-          <div v-for="item in foodBag.foodContents" :key="item">
+          <div v-for="item in bag.contents" :key="item.id">
             <q-item clickable v-ripple>
-              <q-item-section>{{ item }}</q-item-section>
+              <q-item-section>{{ item.description }}</q-item-section>
             </q-item>
             <q-separator></q-separator>
           </div>
@@ -73,7 +61,8 @@ export default {
   data() {
     return {
       showAddFood: false,
-      fab2:false,
+      fab2: false,
+      date: "",
       foodBag: {
         title: "Halal",
         foodContents: ["Banana", "Rice", "Chocolate", "Porridge"],
@@ -88,11 +77,25 @@ export default {
   components: {
     addFood,
   },
+  created() {
+    this.sliceDate();
+    const contents = this.bag.contents;
+    this.bag.contents =JSON.parse(contents)
+  },
+  computed:{
+    // bagWithContents() {
+    //   return JSON.parse(this.bag.contents)
+    // }
+  },
   props: ["bag"],
   methods: {
-    onClick(){
-      console.log("Ok Boi")
-    }
+    sliceDate() {
+      this.date = this.bag.createdAt;
+      this.date = this.date.slice(0, 10);
+    },
+    onClick() {
+      console.log("Ok Boi");
+    },
   },
 };
 </script>

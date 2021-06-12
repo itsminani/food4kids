@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="Title">Recently used Bags</div>
-    {{ bags }}
     <q-separator bold strong></q-separator>
     <div v-for="bag in bags" :key="bag.id">
       <bag v-bind:bag="bag" />
